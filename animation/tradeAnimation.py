@@ -84,7 +84,8 @@ class OptionWidget(QtWidgets.QWidget):
         self.tradeAnimationButton.clicked.connect(qt.Callback(self.tradeAnimation))
         self.flipAnimationButton.clicked.connect(qt.Callback(self.flipAnimation))
 
-        #//////////////////////ここから実際の処理////////////////////////
+
+#//////////////////////ここから実際の処理////////////////////////
 
     def tradeAnimation(self):
         """
@@ -95,7 +96,6 @@ class OptionWidget(QtWidgets.QWidget):
         if not len(nodes) == 2:
             return
 
-        # attribute = ["translateX","translateY","translateZ","rotateX","rotateY","rotateZ"]
         attribute = []
 
         if self.tradeTranslateXcheck.checkState():
@@ -118,11 +118,6 @@ class OptionWidget(QtWidgets.QWidget):
         temp2 = cmds.createNode( 'transform', n='temp2' )
         firstNode = nodes[0]
         secondNode = nodes[1]
-        # cmds.copyKey(nodes[0],time=":",at=["translateX", "translateY", "translateZ"],
-        #             an="keys",option='curve',float=":",shape=True,cp=False)
-        # attribute = ["rotateX","rotateY","rotateZ"]
-        # attribute = ["translateX","translateY","translateZ"]
-
 
         cmds.copyKey(firstNode,at=attribute,option="curve")
         cmds.pasteKey(temp1,at=attribute)
